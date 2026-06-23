@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
 // Rutas públicas
-const PUBLIC_ROUTES = ['/', '/login', '/register','/precios']
+const PUBLIC_ROUTES = ['/', '/login', '/register','/precios','/peliculas']
 
 // Rutas por plan
 const RUTAS_POR_PLAN = [

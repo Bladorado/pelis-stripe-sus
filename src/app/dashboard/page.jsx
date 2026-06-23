@@ -19,7 +19,7 @@ export default function DashboardPage() {
     const getUser = async () => {
       try {
         const { data: { user }, error: userError } = await supabase.auth.getUser()
-        
+
         if (userError || !user) {
           router.push('/login')
           return
@@ -36,7 +36,7 @@ export default function DashboardPage() {
 
         if (perfilError && perfilError.code === 'PGRST116') {
           console.log('⚠️ Perfil no encontrado, creando uno...')
-          
+
           const nuevoPerfil = {
             id: user.id,
             email: user.email,
@@ -92,7 +92,7 @@ export default function DashboardPage() {
         <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md">
           <h2 className="text-red-600 font-bold">Error</h2>
           <p className="text-red-700">{error}</p>
-          <button 
+          <button
             onClick={() => window.location.reload()}
             className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
           >
@@ -111,7 +111,7 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold">Dashboard</h1>
             <LogoutButton />
           </div>
-          
+
           <div className="space-y-6">
             {/* Información del usuario */}
             <div>
@@ -127,7 +127,7 @@ export default function DashboardPage() {
             {/* SECCIÓN DE PLANES CON BOTONES */}
             <div className="border-t pt-6">
               <h3 className="text-lg font-semibold mb-4">Planes disponibles</h3>
-              
+
               {/* Botón para ir a la página de precios */}
               <div className="mb-6">
                 <Link
@@ -138,8 +138,16 @@ export default function DashboardPage() {
                 </Link>
               </div>
 
+              
+              <Link
+                href="/peliculas"
+                className="inline-block px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+              >
+                🎬 Ver películas
+              </Link>
+
               {/* Resumen de planes */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className={`border rounded-lg p-4 ${perfil?.plan === 'cliente' ? 'border-blue-500 bg-blue-50' : 'bg-gray-50'}`}>
                   <h4 className="font-bold">Cliente</h4>
                   <p className="text-sm text-gray-600">Contenido básico</p>
@@ -148,7 +156,7 @@ export default function DashboardPage() {
                     <span className="inline-block mt-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Actual</span>
                   )}
                 </div>
-                
+
                 <div className={`border rounded-lg p-4 ${perfil?.plan === 'estandar' ? 'border-blue-500 bg-blue-50' : 'bg-gray-50'}`}>
                   <h4 className="font-bold">Estándar</h4>
                   <p className="text-sm text-gray-600">Más contenido y funciones</p>
@@ -165,7 +173,7 @@ export default function DashboardPage() {
                     </Link>
                   )}
                 </div>
-                
+
                 <div className={`border rounded-lg p-4 ${perfil?.plan === 'premium' ? 'border-blue-500 bg-blue-50' : 'bg-gray-50'}`}>
                   <h4 className="font-bold">Premium</h4>
                   <p className="text-sm text-gray-600">Todo el contenido + exclusivas</p>

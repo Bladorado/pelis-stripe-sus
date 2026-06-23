@@ -4,7 +4,7 @@ import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-02-24.acacia',
+  apiVersion: '2026-05-27.dahlia', // ← Actualizar
 })
 
 export async function POST(request) {
@@ -21,7 +21,8 @@ export async function POST(request) {
     // Crear cliente de Supabase con ANON KEY (más simple)
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY  // ← Usar ANON KEY
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      process.env.SUPABASE_SERVICE_ROLE_KEY  
     )
 
     // Buscar stripe_customer_id
